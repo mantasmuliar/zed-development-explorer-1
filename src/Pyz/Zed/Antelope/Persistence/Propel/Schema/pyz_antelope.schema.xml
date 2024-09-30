@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<database xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          name="zed" xsi:noNamespaceSchemaLocation="http://static.spryker.com/schema-01.xsd"
+          namespace="Orm\Zed\Antelope\Persistence" package="src.Orm.Zed.Antelope.Persistence">
+
+    <table name="pyz_antelope" identifierQuoting="true">
+        <column name="id_antelope" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
+        <column name="name" required="true" type="VARCHAR" size="255"/>
+        <column name="fk_location" required="false" type="INTEGER" default="null"/>
+
+        <unique name="unique-pyz_antelope-name">
+            <unique-column name="name"/>
+        </unique>
+
+        <foreign-key name="pyz_antelope-fk_location" foreignTable="pyz_antelope_location">
+            <reference local="fk_location" foreign="id_location"/>
+        </foreign-key>
+
+        <id-method-parameter value="pyz_antelope_pk_seq"/>
+    </table>
+</database>
